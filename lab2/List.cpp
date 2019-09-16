@@ -14,8 +14,10 @@ List::List() {
   tail = new ListNode;
   count = 0;
 
+  head->previous = NULL;
   head->next = tail;
   tail->previous = head;
+  tail->next = NULL;
 }
 
 // Copy Constructor
@@ -76,7 +78,7 @@ void List::makeEmpty() {
     cur = cur->next;
     delete temp;
 
-    count--;
+    count = 0;
   }
 }
 
@@ -160,18 +162,7 @@ ListItr List::find(int x) {
 
 // returns the number of elements in the list
 int List::size() const {
-  int size;
-  ListNode *temp;
-  temp = head->next;
-  // cout<< "Hi" << endl;
-  while(temp != NULL){
-    size++;
-    temp = temp->next;
-  }
-  // dummy tail counted
-  size = size-2;
-  cout << "size = " << size << endl;
-  return size;
+  return count;
 }
 
 // prints a list either forwards or backwards
