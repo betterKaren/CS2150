@@ -9,7 +9,7 @@ using namespace std;
 
 // Constructor
 postfixCalculator::postfixCalculator() {
-	myStack = new sstack<int>;
+	myStack = new stack<int>;
 }
 
 // Deconstructor
