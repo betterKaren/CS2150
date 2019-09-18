@@ -1,5 +1,5 @@
 // Yu Du, yd2am
-// 09/15/2019
+// 09/17/2019
 // postfixCalculator.cpp
 
 #include <iostream>
@@ -37,6 +37,7 @@ void postfixCalculator::subtract() {
 	myStack->pop();
 	
 	// myStack : LIFO
+	cout << num2 - num1 << endl;
 	myStack->push(num2 - num1);
 }
 
