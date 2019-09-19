@@ -1,10 +1,11 @@
 // Yu Du, yd2am
-// 09/17/2019
+// 09/19/2019
 // testProfixCalc.cpp
 
 #include <iostream>
 #include <stack>
 #include <cstdlib>
+#include "Stack.h"
 #include "postfixCalculator.h"
 using namespace std;
 

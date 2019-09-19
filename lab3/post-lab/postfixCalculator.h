@@ -1,9 +1,12 @@
 // Yu Du, yd2am
-// 09/17/2019
+// 09/19/2019
 // postfixCalculator.h
 
 #include <iostream>
-#include <stack>
+#include "ListNode.h"
+#include "ListItr.h"
+#include "List.h"
+#include "Stack.h"
 using namespace std;
 
 class postfixCalculator {
@@ -20,5 +23,5 @@ public:
 
 
 private:
-	stack<int>* myStack;
+	Stack* myStack;
 };

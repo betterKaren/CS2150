@@ -1,15 +1,15 @@
 // Yu Du, yd2am
-// 09/17/2019
+// 09/19/2019
 // postfixCalculator.cpp
 
 #include <iostream>
-#include <stack>
+#include "Stack.h"
 #include "postfixCalculator.h"
 using namespace std; 
 
 // Constructor
 postfixCalculator::postfixCalculator() {
-	myStack = new stack<int>;
+	myStack = new Stack();
 }
 
 // Deconstructor
@@ -37,7 +37,7 @@ void postfixCalculator::subtract() {
 	myStack->pop();
 	
 	// myStack : LIFO
-	cout << num2 - num1 << endl;
+	// cout << num2 - num1 << endl;
 	myStack->push(num2 - num1);
 }
 
@@ -67,8 +67,6 @@ void postfixCalculator::negation() {
 }
 
 int postfixCalculator::getTopValue() {
-	if(myStack->size() == 0)
-		exit(-1);
 	return myStack->top();
 }
 
