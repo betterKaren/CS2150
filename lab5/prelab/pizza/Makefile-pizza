@@ -1,0 +1,29 @@
+# Yu Du, yd2am
+# Makefile-pizza 
+# 2019.10.11
+
+CXX=clang++ $(CXXFLAGS)
+DEBUG=-Wall -g
+CXXFLAGS=-Wall -O2
+
+OFILES = pizza.o pizzadough.o tomatosauce.o toppings.o mushrooms.o peppers.o cheese.o pepperoni.o
+
+.SUFFIXES: .o .cpp
+
+pizza: $(OFILES)
+	$(CXX) $(CXXFLAGS) $(DEBUG) $(OFILES) -o pizza
+	@echo "Pizza is Hot and Ready!"
+	
+clean:
+	-rm -f *.o *~ outputfile
+
+
+pizza.o: pizza.cpp
+pizzadough.o: pizzadough.cpp pizzadough.h
+tomatosauce.o: tomatosauce.cpp tomatosauce.h
+toppings.o: pepperoni.cpp peppers.cpp mushrooms.cpp cheese.cpp toppings.cpp \
+			pepperoni.h peppers.h mushrooms.h cheese.h toppings.h
+pepperoni.o: pepperoni.cpp pepperoni.h
+mushrooms.o: mushrooms.cpp mushrooms.h
+peppers.o: peppers.cpp peppers.h
+cheese.o: cheese.cpp cheese.h
