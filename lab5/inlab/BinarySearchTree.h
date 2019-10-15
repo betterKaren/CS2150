@@ -1,3 +1,7 @@
+// Yu Du, yd2am
+// BinarySearchTree.h
+// 2019.10.15
+
 #ifndef BST_H
 #define BST_H
 
@@ -50,6 +54,14 @@ class BinarySearchTree {
   void printTree(BinaryNode* root, Trunk* prev, bool isLeft);
 
   // Any other methods you need...
+  //private helper for insert
+  BinaryNode* insert(BinaryNode*& n, const string& x);
+  //private helper for pathTo
+  string pathTo(BinaryNode* n, const string& x) const;
+  //private helper for find
+  bool find(BinaryNode* n, const string& x) const;
+  //private helper for numNodes
+  int numNodes(BinaryNode* n) const;
 };
 
 #endif

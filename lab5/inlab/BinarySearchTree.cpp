@@ -1,4 +1,9 @@
+// Yu Du, yd2am
+// BinarySearchTree.cpp
+// 2019.10.15
+
 #include "BinarySearchTree.h"
+#include <iostream>
 #include <string>
 #include "BinaryNode.h"
 using namespace std;
@@ -13,6 +18,8 @@ BinarySearchTree::~BinarySearchTree() {
 // insert finds a position for x in the tree and places it there.
 void BinarySearchTree::insert(const string& x) {
   // YOUR IMPLEMENTATION GOES HERE
+  // root: BinaryNode *
+  root = insert(root, x);
 }
 
 // remove finds x's position in the tree and removes it.
@@ -22,16 +29,28 @@ void BinarySearchTree::remove(const string& x) { root = remove(root, x); }
 // took to get there.
 string BinarySearchTree::pathTo(const string& x) const {
   // YOUR IMPLEMENTATION GOES HERE
+  if(!find(x))    // there is no such string stored in this BST
+    return "";
+  else {
+    string path = pathTo(root, x);
+    int len = path.size();
+    return path.substr(1, len-1);
+  }
 }
 
 // find determines whether or not x exists in the tree.
 bool BinarySearchTree::find(const string& x) const {
   // YOUR IMPLEMENTATION GOES HERE
+  return find(root, x);
 }
 
 // numNodes returns the total number of nodes in the tree.
 int BinarySearchTree::numNodes() const {
   // YOUR IMPLEMENTATION GOES HERE
+  if(root == NULL)
+    return 0;
+  else
+    return numNodes(root);
 }
 
 // private helper for remove to allow recursion over different nodes. returns
@@ -94,17 +113,17 @@ void showTrunks(Trunk* p) {
 
 // Recursive function to print binary tree
 // It uses inorder traversal
-void BinarySearchTree::printTree(BinaryNode* root, Trunk* prev, bool isLeft) {
+void BinarySearchTree::printTree(BinaryNode* root, Trunk* prev, bool isRight) {
   if (root == NULL) return;
 
   string prev_str = "    ";
   Trunk* trunk = new Trunk(prev, prev_str);
 
-  printTree(root->left, trunk, true);
+  printTree(root->right, trunk, true);
 
   if (!prev)
     trunk->str = "---";
-  else if (isLeft) {
+  else if (isRight) { // github user @willzhang05 pointed out that I forgot to change this from isLeft to isRight on my first commit
     trunk->str = ".---";
     prev_str = "   |";
   } else {
@@ -118,7 +137,64 @@ void BinarySearchTree::printTree(BinaryNode* root, Trunk* prev, bool isLeft) {
   if (prev) prev->str = prev_str;
   trunk->str = "   |";
 
-  printTree(root->right, trunk, false);
+  printTree(root->left, trunk, false);
 }
 
 void BinarySearchTree::printTree() { printTree(root, NULL, false); }
+
+// private helper for insert
+BinaryNode* BinarySearchTree::insert(BinaryNode*& n, const string& x) {
+  if(n == NULL) {
+    n = new BinaryNode();
+    n->value = x;
+  }
+  else if(x < n->value)
+    n->left = insert(n->left, x);
+  else if(x > n->value)
+    n->right = insert(n->right, x);
+
+  return n;
+}
+
+// private helper for pathTo
+string BinarySearchTree::pathTo(BinaryNode* n, const string& x) const {
+  if(n == NULL)
+    return " ";
+
+  string path = "";
+  string val = " " + n->value;
+  if(x == n->value) {
+    path = val;
+  }
+  else if(x < n->value)
+    path = path + val + pathTo(n->left, x);
+  else if(x > n->value)
+    path = path + val + pathTo(n->right, x);
+
+  return path;
+}
+
+// private helper for find
+bool BinarySearchTree::find(BinaryNode* n, const string& x) const {
+  if(n == NULL)
+    return false;
+  else if(x == n->value)
+    return true;
+  else if(x < n->value)
+    return find(n->left, x);
+  else   // x > n->value
+    return find(n->right, x);
+}
+
+// private helper for numNodes
+int BinarySearchTree::numNodes(BinaryNode* n) const {
+  int num = 1;
+  if(n->left != NULL)
+    num += numNodes(n->left);
+  if(n->right != NULL)
+    num += numNodes(n->right);
+
+  return num;
+}
+
+

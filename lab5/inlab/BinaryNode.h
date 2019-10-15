@@ -1,3 +1,7 @@
+// Yu Du, yd2am
+// BinaryNode.h
+// 2019.10.15
+
 #ifndef BINARYNODE_H
 #define BINARYNODE_H
 #include <string>
