@@ -1,3 +1,7 @@
+// Yu Du, yd2am
+// AVLTree.h
+// 2019.10.16
+
 #ifndef AVL_H
 #define AVL_H
 
@@ -63,6 +67,11 @@ class AVLTree {
   void printTree(AVLNode* root, Trunk* prev, bool isLeft);
 
   // Any other methods you need...
+  AVLNode* insert(AVLNode*& n, const string& x);
+  string pathTo(AVLNode* n, const string& x) const;
+  bool find(AVLNode* n, const string& x) const;
+  int numNodes(AVLNode* n) const;
+  int balanceFactor(AVLNode* n);
 };
 
 // max returns the greater of two integers.

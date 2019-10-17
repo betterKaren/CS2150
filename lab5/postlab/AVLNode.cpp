@@ -1,3 +1,7 @@
+// Yu Du, yd2am
+// AVLNode.cpp
+// 2019.10.16
+
 #include "AVLNode.h"
 #include <string>
 using namespace std;
