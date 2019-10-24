@@ -32,5 +32,6 @@ int main() {
     cout << "Enter number: ";
     cin >> x;
     cout << x << " is prime: " << checkprime(x) << endl;
-    cout << "next higest prime: " << getNextPrime(x) << endl;
+    if(checkprime(x))
+        cout << "next higest prime: " << getNextPrime(x) << endl;
 }
