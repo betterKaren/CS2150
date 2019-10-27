@@ -1,0 +1,38 @@
+C010	000				jmp		start	skip around the variables
+0000	001		i		dw		0		int i (index)
+0006	002		a		dw		0		address of a[0]
+0004	003		len		dw		4		set the length of array
+0000	004		cur		dw		0		current element
+0000	005		max		dw		0		the maximium value of the array
+0002	006		a[0]	dw		2		a[0] = 2				
+0004	007		a[1]	dw		4		a[1] = 4
+0006	008		a[2]	dw		6		a[2] = 6
+0005	009		a[3]	dw		5		a[3] = 5
+0000	00A		zero	dw		0
+0001	00B		one		dw		1
+3000	00C		ldit	dw		3000
+0000	00D								leave space for changes
+0000	00E
+0000	00F
+3003	010		start	load	len 	load the length of array
+6001	011				sub		i 		subtract i from accumulator(len)
+E023	012				jmpl	xit 	i > size, exit
+D023	013				jmpe	xit		i == size, exit
+300C	014				load	ldit	form the inst to load a[i]
+5002	015				add		a		add base address
+5001	016				add		i 		add (base address + i)
+4018	017 			store	doit	form the inst into the code
+0000	018		doit	dw		0
+4004	019				store	cur 	cur = a[i]
+6005	01A				sub 	max 	cur = cur-max
+E01F	01B				jmpl	cont	if curr < max
+D01F	01C				jmpe	cont	if curr == max
+3004	01D				load	cur 	load cur
+4005	01E				store	max 	if cur > max, max = cur
+3001	01F		cont	load 	i 		load i
+500B	020				add 	i 		i+1
+4001	021				store	i 		store i
+C010	022				jmp 	start 	jump to the start of the loop
+3005	023		xit		load 	max 	load max
+1800	024				printH	max 	print max
+0000	025				halt
