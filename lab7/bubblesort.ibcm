@@ -1,0 +1,68 @@
+C015	000				jmp		start	skip around the variables
+0000	001		i		dw		0		int i = 0
+0003	002		j 		dw		3		int j = MAX-1 = 3
+0006	003		a		dw		0		address of a[0]
+0004	004		MAX		dw		4		the length of array
+0000	005		temp	dw		0		temp
+0002	006		a[0]	dw		2		a[0] = 2				
+0004	007		a[1]	dw		4		a[1] = 4
+0006	008		a[2]	dw		6		a[2] = 6
+0005	009		a[3]	dw		5		a[3] = 5
+0000	00A		curr	dw		0		current value
+0000	00B		prev	dw		0		previous value
+0000	00C		zero	dw		0
+0001	00D		one		dw		1
+3000	00E		ldit	dw		3000
+4000	00F		sdit	dw		4000	store the address of a[j]
+0000	010								leave space for changes
+0000	011
+0000	012
+0000	013
+0000	014
+3004	015		start	load	MAX 	load the length of array
+6001	016				sub		i 		subtract i from accumulator(max)
+E043	017				jmpl	xit 	i > MAX, exit
+D043	018				jmpe	xit		i == MAX, exit
+3002	019		loop	load	j 		load j
+6001	01A				sub 	i 		subtract i from accumulator(j)
+E03C	01B				jmpl	xit1	j < i, exit inner loop
+D03C	01C				jmpe	xit1	j == 1, exit inner loop
+300E	01D				load	ldit	form the inst to load a[i]
+5003	01E				add		a		add base address
+5002	01F				add		j 		base address + j
+4023	020 			store	doit	store the address of a[j]
+600D	021				sub 	1		base address + j - 1
+4025	022				store 	comp	store the address of a[j-1]
+0000	023		doit	dw		0
+400A	024				store	curr 	curr = a[j]
+0000	025		comp	dw		0
+400B	026				store	prev 	prev = a[j-1]
+300A	027				load	curr 	load curr
+600B	028				sub 	prev 	curr - prev
+E02B	029				jmpl	swap	if curr is less than prev, swap
+C038	02A				jmp 	cont	else, jump to start the next loop
+300F	02B		swap	load	sdit	make a[j] = prev
+5003	02C				add 	a 		get base address
+5002	02D				add 	j 		a[j]
+4030	02E				store	swap1	store the address of a[j]
+300B	02F				load	prev 	load prev
+0000	030		swap1	dw		0		a[j]
+300F	031				load	sdit	make a[j-1] = curr
+5003	032				add 	a 		get base address
+5002	033				add 	j 		a[j]
+600D	034				sub 	1		a[j-1]
+4037	035				store	res		store the address of a[j-1]
+300A	036				load	curr
+0000	037		res		dw		0
+3002	038		cont	load 	j 		load j
+600D	039				sub 	1		j--
+4002	03A				store	j 		store the value of new j
+C019	03B				jmp 	loop	jump back to the beginning of inner loop
+3001	03C		xit1	load	i 		load i
+500D	03D				add 	1 		i++
+4001	03E				store	i 		store the value of new i
+3004	03F				load	MAX 	load the value of MAX
+600D 	040				sub 	1 		reinit j = MAX-1
+4002	041				store 	j 		store the value of new j
+C015	042				jmp 	start 	jump back to the beginning of the start
+0000	043		xit		halt

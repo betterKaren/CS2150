@@ -1,0 +1,21 @@
+C008	000				jmp 	start	jump to the start
+0014	001		len 	dw		xx		store the length of this IBCM program
+0001	002		one		dw		1
+0000	003		zero	dw		0
+0000	004		i 		dw				kinda like instruction pointer
+3000	005		ldit	dw		3000
+0000	006								leave space for changes
+0000	007
+3001	008		start	load	len 	load the length of the program
+6004	009				sub 	i 		len - i
+E014	00A				jmpl	xit		if(len < i), exit
+3005	00B				load	ldit
+5004	00C				add		i
+400E	00D				store	doit
+0000	00E		doit	dw		0
+1800	00F				printH
+3004	010				load	i
+5002	011				add 	1		i++
+4004	012				store	i
+C008	013				jmp 	start	jump back to the beginning of the loop
+0000	014		xit		halt
