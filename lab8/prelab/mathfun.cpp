@@ -13,18 +13,18 @@ extern "C" int power (int, int);
 
 int  main () {
     // delcare the local variables
-    int x, y, product, power;
+    int x, y, prod, pow;
 
     cout << "Please enter a positive integer as x : ";
     cin >> x;
     cout << "Please enter a positive integer as y : ";
-    cint >> y;
+    cin >> y;
 
     // call externally defined functions to get the result
-    product = product(x, y);
-    cout << "The product of " << x << "and " << y << " is " << product << endl;
-    power = power(x, y);
-    cout << x << " to the power of "<< y << " is " << power << endl;
+    prod = product(x, y);
+    cout << "The product of " << x << "and " << y << " is " << prod << endl;
+    pow = power(x, y);
+    cout << x << " to the power of "<< y << " is " << pow << endl;
 
     // no need to deallocate
     return 0;
