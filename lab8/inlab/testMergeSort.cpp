@@ -1,9 +1,6 @@
-/*
-University of Virginia
-CS 2150 In-Lab 8
-Spring 2018 
-Test file for mergeSort
-*/
+// Yu Du, yd2am
+// testMergeSort.cpp
+// 2019.11.5 
 
 #include <iostream>
 using namespace std;
@@ -25,7 +22,7 @@ int main(){
     cin >> arr[i];
   }
 
-  // print unsorted array
+  // print unsorted  array
   cout << "Unsorted array: ";
   for(int i = 0; i < size; i++){
     cout << arr[i] << " ";

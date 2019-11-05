@@ -1,7 +1,6 @@
-; University of Virginia
-; CS 2150 In-Lab 8
-; Spring 2018
-; mergeSort.s	
+; Yu Du, yd2am
+; mergeSort.s
+; 2019.11.5
 
 	global mergeSort
 	global merge
@@ -14,8 +13,45 @@
 ; Parameter 3 is the right index in the array
 ; Return type is void 
 mergeSort:
-
 	; Implement mergeSort here
+	cmp rsi, rdx		; compare left index & right index
+	jge end 			; if(start >= end) exit
+	mov r8, rsi 		; r8 = left index
+	mov r9, rdx 		; r9 = right index
+	mov rcx, rsi 		; rcx = left index
+	add rcx, rdx		; rcx = left index + right index
+	shr rcx, 1			; rcx /= 2 = mid
+	push r8				; push left index into stack (keep the original)
+	push r9 			; push right index into stack (keep the original)
+	push rsi			; push left index into stack (to be update)
+	push rdx			; push right index into stack (to be update)
+	push rcx			; push mid index into stack
+	call mergeSort 		; the first half, call mergerSort(start, mid)
+	pop rcx				; pop mid index
+	pop rdx 			; pop rigth index
+	pop rsi 			; pop left index
+	pop r9				; pop right index
+	pop r8				; pop left index
+	mov rdx, rcx		; right index = mid
+	mov rsi, r8			; left index = left index
+	push r8
+	push r9
+	push rsi
+	push rdx
+	push rcx
+	call mergeSort 		; the second half, call mergeSort(mid+1, end)
+	pop rcx
+	pop rdx
+	pop rsi
+	pop r9
+	pop r8
+	mov rsi, rcx		; left index = mid
+	add rsi 			; left index++ -> left index = mid+1
+	mov rdx, r9			; right index = end
+	call merge 			; call merge
+end:
+	ret
+
 	
 
 
