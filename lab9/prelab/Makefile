@@ -3,7 +3,7 @@
 # 2019.11.16
 
 # Defines the C++ compiler we'll be using
-CXX	= clang++
+CXX	= clang++ -m64
 
 # Defines the flags we'll be passing to the C++ compiler
 CXXFLAGS	= -Wall -g
@@ -12,7 +12,7 @@ CXXFLAGS	= -Wall -g
 AS	= nasm
 
 # Defines the flags for the assembler
-ASFLAGS	= -f macho64 -g
+ASFLAGS	= -f elf64 -g
 
 # All of the .o files for our program
 OFILES	= threexinput.o threexplusone.o timer.o
