@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <cstdlib>
-#include "time.h"
+#include "timer.h"
 using namespace std;
 
 extern "C" int threexplusone(int);
@@ -31,8 +31,8 @@ int  main () {
     time = t.getTime()*1000000;
     double avg = time/n;
 
-	cout << x << " took " << count << " steps to reach the value 1 " << endl;
-	cout << "Average time on " << n << " runs is "<< avg << "us" << endl;
+	cout << x << " took " << count << " steps to reach the value 1." << endl;
+	cout << "Average time on " << n << " runs is "<< avg << "us." << endl;
     // no need to deallocate
     return 0;
 }
