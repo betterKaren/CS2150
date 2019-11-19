@@ -25,8 +25,8 @@ int main() {
 	/* create a new linked list whose dummy head is null */
 	struct list *myList = (struct list *)malloc(sizeof(struct list));
 	myList->dummyHead = (struct list_node *)malloc(sizeof(struct list_node));
-	myList->dummyHead->value = 0;		/* seems cannot = NULL here!!?? */
-	myList->dummyHead->next = NULL;
+	myList->dummyHead->value = 0;
+	// myList->dummyHead->next = NULL;
 
 	/* store the original dummyHead because will iterate */
 	struct list_node *head = myList->dummyHead;
