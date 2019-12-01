@@ -8,15 +8,15 @@ CXX	= clang++
 # Defines the flags we'll be passing to the C++ compiler
 CXXFLAGS	= -Wall -O2 -g -std=c++11
 
-OFILES	= huffmanNode.o
+OFILES	= topological.o
 
 .SUFFIXES: .o .cpp
 
-main:	encoder decoder
-encoder:	heap.o huffmanenc.o $(OFILES)
-	$(CXX) $(CXXFLAGS) $(OFILES) huffmanenc.o heap.o -o encoder
-decoder:	huffmandec.o $(OFILES)
-	$(CXX) $(CXXFLAGS) $(OFILES) huffmandec.o -o decoder
+# main:	encoder decoder
+main:	$(OFILES)
+	$(CXX) $(CXXFLAGS) $(OFILES)
+# decoder:	huffmandec.o $(OFILES)
+# 	$(CXX) $(CXXFLAGS) $(OFILES) huffmandec.o -o decoder
 
 clean:
 	/bin/rm -f *.o *~
