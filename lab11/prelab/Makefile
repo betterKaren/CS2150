@@ -12,11 +12,9 @@ OFILES	= topological.o
 
 .SUFFIXES: .o .cpp
 
-# main:	encoder decoder
 main:	$(OFILES)
 	$(CXX) $(CXXFLAGS) $(OFILES)
-# decoder:	huffmandec.o $(OFILES)
-# 	$(CXX) $(CXXFLAGS) $(OFILES) huffmandec.o -o decoder
+	doxygen
 
 clean:
 	/bin/rm -f *.o *~

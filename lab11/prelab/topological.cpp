@@ -28,14 +28,17 @@ public:
 	list<Vertex*> adj;
 
 	/**
-	* @brief Vertex constructor, takes in the value of this vertex.
+	* @brief Vertex constructor
+	* @param s the value of this vertex.
 	*/
 	Vertex(string s) {
 		value = s;
 		indegree = 0;
 	}
 	/**
-	* @brief Vertex constructor, takes in the value and indegree of this vertex.
+	* @brief Vertex constructor
+	* @param s the value
+	* @param i the indegree of this vertex.
 	*/
 	Vertex(string s, int i) {
 		value = s;
@@ -51,8 +54,8 @@ public:
 /**
 * @brief This is the method to find topological sort of a graph.
 * @details Based on the graph, find the vertices with indegree as 0. Start to find topological sort.
-* @param The adjacent list of this graph.
-* @param The queue that always storing vertices whose indegree = 0.
+* @param vertices The adjacent list of this graph.
+* @param myQueue The queue that always storing vertices whose indegree = 0.
 */
 void topSort(vector<Vertex*> vertices, queue<Vertex*> myQueue) {
 	// push the vertices with indegree=0 into queue, to be sorted
@@ -85,8 +88,9 @@ void topSort(vector<Vertex*> vertices, queue<Vertex*> myQueue) {
 * @details If one vertex has been visited, then set its position to the previous position.
 * But if hasn't been visited, push this vertex into the vector that stores all the vertices in this graph.
 * In the end, for simplicity, only push dest into src's adjacent list.
-* @param The value of the first vertex (source).
-* @param The value of the second vertex (destination).
+* @param s1 The value of the first vertex (source).
+* @param s2 The value of the second vertex (destination).
+* @param vertices The adjacent list of this graph.
 */
 vector<Vertex*> buildGraph(string s1, string s2, vector<Vertex*> vertices) {
 	int pos1 = 0;				// position of vertex1 in the vector

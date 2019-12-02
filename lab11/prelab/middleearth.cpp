@@ -5,7 +5,9 @@
 #include <math.h>
 #include <time.h>
 
-// The list of all the place names that we'll be using
+/**
+* @brief The list of all the place names that will be using.
+*/
 string all_city_names[] = {
     // human towns, cities and strongholds
     "Bree",             // a human and hobbit town between the Shire and Rivendell
@@ -58,7 +60,14 @@ string all_city_names[] = {
     "END"
 };
 
-// Iluvatar, the creator of Middle-Earth
+
+/**
+* @brief Constructor/Creater of Middle-Earth, Iluvatar
+* @param xsize size of Middle-Earch's x axis
+* @param ysize size of Middle-Earch's y axis
+* @param num_cities number of cities
+* @param seed 
+*/
 MiddleEarth::MiddleEarth (int xsize, int ysize, int num_cities, int seed) {
     // set up the random number seed
     srand( (seed==-1) ? time(NULL) : seed );
@@ -98,12 +107,18 @@ MiddleEarth::MiddleEarth (int xsize, int ysize, int num_cities, int seed) {
         indices[cities[i]] = i;
 }
 
-// Sauron, the destructor of Middle-Earth.
+
+/**
+* @brief Destructor of Middle-Earth, Sauron
+*/
 MiddleEarth::~MiddleEarth () {
     delete[] distances;
 }
 
-// The Mouth of Sauron!  (prints out info on the created 'world')
+
+/**
+* @brief This method prints out info on the created 'world'. The Mouth of Sauron!
+*/
 void MiddleEarth::print() {
     cout << "there are " << num_city_names
          << " locations to choose from; we are using " << cities.size() << endl;
@@ -113,8 +128,11 @@ void MiddleEarth::print() {
              << ")" << endl;
 }
 
-// prints a tab-separated table of the distances (this can be loaded
-// into Excel or similar)
+
+/**
+* @brief This method prints a tab-separated table of the distances (can be loaded
+* into Excel or smililar).
+*/
 void MiddleEarth::printTable() {
     cout << "Table: " << endl << endl << "Location\txpos\typos\t";
     for ( unsigned int r = 0; r < cities.size(); r++ )
@@ -128,19 +146,30 @@ void MiddleEarth::printTable() {
     }
 }
 
-// This method returns the distance between the two passed cities.  If
-// we assume that the hash table (i.e. the map) is O(1), then this
-// method call is also O(1)
+
+/**
+* @brief This method returns the distance between the two passed cities.
+* @details If we assume that the hash table (i.e. the map) is O(1), then this
+* method call is also O(1).
+* @param city1 the first city
+* @param city2 the second city
+* @return distance between two cities
+*/
 float MiddleEarth::getDistance (string city1, string city2) {
     return distances[indices[city1]*cities.size()+indices[city2]];
 }
 
-// Returns the list of cities to travel to.  The first city is the
-// original start point as well as the end point.  The number of
-// cities passed in does not include this start/end point (so there
-// will be length+1 entries in the returned vector).
+
+/**
+* @brief This method returns the list of cities to travel to.
+* @details The first city is the original start point as well as the end point.
+* The number of cities passed in does not include this start/end point (so there
+* will be length+1 entries in the returned vector).
+* @param length the number of cities to visit
+* @return vector<string> the list of cities to travel to. 
+*/
 vector<string> MiddleEarth::getItinerary (unsigned int length) {
-    length++; // to account for the start point
+    length++;           // to account for the start point
     // check parameter
     if ( length > cities.size() ) {
         cout << "You have requested an itinerary of " << length-1
