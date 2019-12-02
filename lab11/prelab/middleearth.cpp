@@ -63,10 +63,10 @@ string all_city_names[] = {
 
 /**
 * @brief Constructor/Creater of Middle-Earth, Iluvatar
-* @param xsize size of Middle-Earch's x axis
-* @param ysize size of Middle-Earch's y axis
+* @param xsize width of the world
+* @param ysize height of the world
 * @param num_cities number of cities
-* @param seed 
+* @param seed random seed
 */
 MiddleEarth::MiddleEarth (int xsize, int ysize, int num_cities, int seed) {
     // set up the random number seed
